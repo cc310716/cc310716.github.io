@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> 𝑫𝑶̣̂ 𝑵𝑯𝑨̣𝒀 𝑽𝑰𝑷 
+ </title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial;
+    background: radial-gradient(circle,#020617,#020617,#000);
+    color:white;
+    text-align:center;
+}
+.container {
+    max-width:420px;
+    margin:auto;
+    padding:15px;
+}
+h1 {
+    color:#00ffe5;
+    text-shadow:0 0 10px #00ffe5;
+}
+
+input, select, button {
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    margin-top:10px;
+}
+
+button {
+    background:#00ffe5;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 10px #00ffe5;
+}
+
+.sensi-box {
+    margin-top:15px;
+    background:rgba(255,255,255,0.05);
+    padding:15px;
+    border-radius:15px;
+    box-shadow:0 0 15px #00ffe5;
+}
+
+.fire {
+    color:#ff4d4d;
+    font-weight:bold;
+    font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1> 𝑫𝑶̣̂ 𝑵𝑯𝑨̣𝒀 𝑽𝑰𝑷 </h1>
+
+    <!-- nhập máy + gợi ý -->
+    <input list="devices" id="search" placeholder="Nhập dòng máy...">
+    <datalist id="devices"></datalist>
+
+    <select id="brand">
+        <option>iPhone</option>
+        <option>Samsung</option>
+        <option>Xiaomi</option>
+        <option>Oppo</option>
+        <option>Vivo</option>
+        <option>Realme</option>
+        <option>Huawei</option>
+        <option>Redmi</option>
+        <option>PoCo</option>
+        <option>Honor</option>
+        <option>tecno</option>
+    </select>
+
+    <button onclick="generateSensi()"> 𝑵𝑯𝑨̂́𝑻 𝑷𝑯𝑨́𝑻 𝑳𝑨̀ 𝑹𝑨 𝑫𝑶̣̂ 𝑵𝑯𝑨̣𝒀 </button>
+    <button onclick="copy()">Ngthuanios</button>
+
+    <div class="sensi-box" id="result">
+        𝑵𝒉𝒂̣̂𝒑 𝒕𝒉𝒊𝒆̂́𝒕 𝒃𝒊̣ 𝒅𝒆̂̉ 𝒕𝒐̂́𝒊 𝒖̛𝒖
+    </div>
+</div>
+
+<script>
+
+// ===== 100+ thiết bị =====
+const deviceList = [
+"iphone 11","iphone 12","iphone 13","iphone 14","iphone 15",
+"samsung a50","samsung a51","samsung a71","samsung s21","samsung s23",
+"oppo f9","oppo f11","oppo reno 5","oppo reno 6",
+"vivo y20","vivo y21","vivo v23",
+"xiaomi redmi note 8","xiaomi redmi note 10","xiaomi redmi note 11",
+"realme 5","realme 7","realme 8",
+"asus rog 3","asus rog 5",
+"black shark 3","black shark 4",
+"oneplus 7","oneplus 9","oneplus 10"
+];
+
+// gợi ý
+let datalist = document.getElementById("devices");
+deviceList.forEach(d=>{
+    let o=document.createElement("option");
+    o.value=d;
+    datalist.appendChild(o);
+});
+
+// random
+function random(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+let currentText="";
+
+function generateSensi(){
+    let name=document.getElementById("search").value;
+    let brand=document.getElementById("brand").value;
+
+    if(name.trim()==""){
+        alert("Nhập máy bro!");
+        return;
+    }
+
+    let high=/pro|max|ultra|gaming/i.test(name);
+
+    let sensi=high?[
+        random(180,200),
+        random(175,200),
+        random(170,195),
+        random(165,190),
+        random(140,170),
+        random(170,195)
+    ]:[
+        random(170,200),
+        random(165,195),
+        random(160,190),
+        random(155,185),
+        random(120,160),
+        random(160,190)
+    ];
+
+    // 🔥 nút bắn <= 60
+    let fireBtn = random(30,60);
+
+    currentText = `
+Độ nhạy ${brand} ${name}:
+Tổng quan: ${sensi[0]}%
+Red Dot: ${sensi[1]}%
+2x Scope: ${sensi[2]}%
+4x Scope: ${sensi[3]}%
+AWM: ${sensi[4]}%
+Free Look: ${sensi[5]}%
+Nút bắn: ${fireBtn}%
+`;
+
+    document.getElementById("result").innerHTML = `
+        <b>${brand} ${name}</b><br><br>
+        Tổng quan: ${sensi[0]}<br>
+        Red Dot: ${sensi[1]}<br>
+        2x Scope: ${sensi[2]}<br>
+        4x Scope: ${sensi[3]}<br>
+        AWM: ${sensi[4]}<br>
+        Free Look: ${sensi[5]}<br>
+        🔥 <span class="fire"> 𝑵𝒖́𝒕 𝒃𝒂̆́𝒏: ${fireBtn}%</span><br><br>
+        ⚡ NgThuanios
+    `;
+}
+
+// copy
+function copy(){
+    if(!currentText){
+        alert("Chưa có dữ liệu!");
+        return;
+    }
+    navigator.clipboard.writeText(currentText);
+    alert("Dangkhoaios!");
+}
+
+</script>
+
+
+<!-- Spider Effect -->
+<canvas id="web"></canvas>
+<canvas id="spiderCanvas"></canvas>
+
+<style>
+#web, #spiderCanvas{
+ position:fixed;
+ top:0;
+ left:0;
+ pointer-events:none;
+}
+#web{z-index:0;}
+#spiderCanvas{z-index:9999;}
+</style>
+
+<script>
+// WEB
+const web=document.getElementById("web");
+const ctxW=web.getContext("2d");
+web.width=window.innerWidth;
+web.height=window.innerHeight;
+
+let pts=[];
+for(let i=0;i<60;i++){
+ pts.push({x:Math.random()*web.width,y:Math.random()*web.height,vx:Math.random()-0.5,vy:Math.random()-0.5});
+}
+
+function webAnim(){
+ ctxW.clearRect(0,0,web.width,web.height);
+ pts.forEach(p=>{
+  p.x+=p.vx; p.y+=p.vy;
+  if(p.x<0||p.x>web.width)p.vx*=-1;
+  if(p.y<0||p.y>web.height)p.vy*=-1;
+
+  ctxW.beginPath();
+  ctxW.arc(p.x,p.y,2,0,Math.PI*2);
+  ctxW.fillStyle="#00ffe5";
+  ctxW.fill();
+ });
+
+ for(let i=0;i<pts.length;i++){
+  for(let j=i+1;j<pts.length;j++){
+   let dx=pts[i].x-pts[j].x;
+   let dy=pts[i].y-pts[j].y;
+   let d=Math.sqrt(dx*dx+dy*dy);
+
+   if(d<120){
+    ctxW.beginPath();
+    ctxW.moveTo(pts[i].x,pts[i].y);
+    ctxW.lineTo(pts[j].x,pts[j].y);
+    ctxW.strokeStyle="rgba(0,255,229,0.2)";
+    ctxW.stroke();
+   }
+  }
+ }
+
+ requestAnimationFrame(webAnim);
+}
+webAnim();
+
+// SPIDER
+const sc=document.getElementById("spiderCanvas");
+const ctxS=sc.getContext("2d");
+sc.width=window.innerWidth;
+sc.height=window.innerHeight;
+
+let sp=[];
+document.addEventListener("mousemove",e=>{
+ sp.push({x:e.clientX,y:e.clientY,size:Math.random()*4+2,life:80});
+});
+
+function spiderAnim(){
+ ctxS.clearRect(0,0,sc.width,sc.height);
+
+ sp.forEach((s,i)=>{
+  ctxS.beginPath();
+  ctxS.arc(s.x,s.y,s.size,0,Math.PI*2);
+  ctxS.fillStyle="white";
+  ctxS.fill();
+
+  s.life--;
+  if(s.life<=0)sp.splice(i,1);
+ });
+
+ requestAnimationFrame(spiderAnim);
+}
+spiderAnim();
+</script>
+
+
+<!-- MAX PING EFFECT: SNOW + WIND + PARALLAX + MOUSE -->
+<canvas id="snow"></canvas>
+
+<style>
+#snow{
+ position:fixed;
+ top:0;
+ left:0;
+ pointer-events:none;
+ z-index:2;
+}
+</style>
+
+<script>
+const snow = document.getElementById("snow");
+const ctx = snow.getContext("2d");
+
+snow.width = window.innerWidth;
+snow.height = window.innerHeight;
+
+let flakes = [];
+let mouseX = window.innerWidth/2;
+
+// tạo nhiều lớp (parallax)
+for(let i=0;i<180;i++){
+ flakes.push({
+  x: Math.random()*snow.width,
+  y: Math.random()*snow.height,
+  r: Math.random()*6+1,
+  speed: Math.random()*1+0.2,
+  wind: Math.random()*0.8-0.4,
+  opacity: Math.random(),
+  depth: Math.random()*2, // chiều sâu
+  glow: Math.random()*15
+ });
+}
+
+// mouse effect
+document.addEventListener("mousemove",e=>{
+ mouseX = e.clientX;
+});
+
+let windOffset = 0;
+
+function drawSnow(){
+ ctx.clearRect(0,0,snow.width,snow.height);
+
+ windOffset += 0.002;
+
+ flakes.forEach(f=>{
+  // gió thay đổi theo thời gian
+  let dynamicWind = Math.sin(windOffset)*0.5;
+
+  // parallax + mouse
+  let mouseEffect = (mouseX - snow.width/2) * 0.0005 * f.depth;
+
+  f.y += f.speed * f.depth;
+  f.x += f.wind + dynamicWind + mouseEffect;
+
+  if(f.y > snow.height){
+   f.y = -10;
+   f.x = Math.random()*snow.width;
+  }
+
+  if(f.x > snow.width) f.x = 0;
+  if(f.x < 0) f.x = snow.width;
+
+  ctx.beginPath();
+  ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
+
+  ctx.fillStyle = "rgba(255,255,255,"+f.opacity+")";
+
+  ctx.shadowBlur = f.glow;
+  ctx.shadowColor = "#00ffe5";
+
+  ctx.fill();
+ });
+
+ requestAnimationFrame(drawSnow);
+}
+
+drawSnow();
+
+window.addEventListener("resize",()=>{
+ snow.width = window.innerWidth;
+ snow.height = window.innerHeight;
+});
+</script>
+
+</body>
+</html>
